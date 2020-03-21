@@ -1,42 +1,40 @@
-# from flask import Flask, jsonify, request
-# from flask_cors import CORS
+import os
+import unittest
 
-# app = Flask(__name__)
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
 
-# @app.route('/')
-# def hello_world():
-#     return 'Hello, World!'
+from app import blueprint,static_blueprint
+from app.main import create_app, db
+from app.main.model import user, blacklist
 
-# if __name__ == '__main__':
-# 	app.run(host='0.0.0.0', debug=True)
+app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+
+app.register_blueprint(blueprint)
+app.register_blueprint(static_blueprint)
+
+app.app_context().push()
+
+manager = Manager(app)
+
+migrate = Migrate(app, db)
+
+manager.add_command('db', MigrateCommand)
 
 
-'''server/app.py - main api app declaration'''
-from flask import Flask, jsonify, send_from_directory
-from flask_cors import CORS
+@manager.command
+def run():
+    app.run()
 
-'''Main wrapper for app creation'''
-app = Flask(__name__, static_folder='../build')
-CORS(app)
 
-##
-# API routes
-##
+@manager.command
+def test():
+    """Runs the unit tests."""
+    tests = unittest.TestLoader().discover('app/test', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
 
-@app.route('/api/items')
-def items():
-  '''Sample API route for data'''
-  return jsonify([{'title': 'A'}, {'title': 'B'}])
-
-##
-# View route
-##
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def index(path):
-  '''Return index.html for all non-api routes'''
-  #pylint: disable=unused-argument
-  return send_from_directory(app.static_folder, 'index.html')
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', debug=True)
+    app.run()
