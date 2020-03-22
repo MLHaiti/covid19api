@@ -104,3 +104,7 @@ ENV/
 # mypy
 .mypy_cache/
 /migrations
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
