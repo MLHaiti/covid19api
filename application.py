@@ -8,23 +8,23 @@ from app import blueprint,static_blueprint
 from app.main import create_app, db
 from app.main.model import user, blacklist
 
-app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+application = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 
-app.register_blueprint(blueprint)
-app.register_blueprint(static_blueprint)
+application.register_blueprint(blueprint)
+application.register_blueprint(static_blueprint)
 
-app.app_context().push()
+application.app_context().push()
 
-manager = Manager(app)
+manager = Manager(application)
 
-migrate = Migrate(app, db)
+migrate = Migrate(application, db)
 
 manager.add_command('db', MigrateCommand)
 
 
 @manager.command
 def run():
-    app.run()
+    application.run()
 
 
 @manager.command
@@ -37,4 +37,5 @@ def test():
     return 1
 
 if __name__ == '__main__':
-    app.run()
+    application.debug = True
+    application.run()
