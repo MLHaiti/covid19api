@@ -27,7 +27,7 @@ wheels/
 .installed.cfg
 *.egg
 .vscode/
-covid19api/
+covid19ht/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
