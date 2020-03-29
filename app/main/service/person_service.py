@@ -3,20 +3,26 @@ import datetime
 
 from app.main import db
 from app.main.model.people import People
+from flask import jsonify
 
 
-def save_new_user(data):
-    user = User.query.filter_by(email=data['email']).first()
-    if not user:
-        new_user = User(
-            public_id=str(uuid.uuid4()),
-            email=data['email'],
-            username=data['username'],
-            password=data['password'],
-            registered_on=datetime.datetime.utcnow()
+def save_new_person(data):
+    people = People.query.filter_by(phone=data['phone']).first()
+    if not people:
+        new_person = People(
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            lat=data['lat'],
+            lon=data['lon'],
+            comment=data["comment"],
+            symptoms=data["symptoms"],
+            dob=data["dob"],
+            geom='POINT('+str(data["lon"])+' '+str(data["lat"])+')'
+
         )
-        save_changes(new_user)
-        return generate_token(new_user)
+        save_changes(new_person)
+        return {"status":"saved"}
     else:
         response_object = {
             'status': 'fail',
@@ -26,29 +32,13 @@ def save_new_user(data):
 
 
 def get_all_people():
-    return User.query.all()
+    return People.query.all()
 
 
-def get_a_person(public_id):
-    return User.query.filter_by(public_id=public_id).first()
+def get_a_person(id):
+    return People.query.filter_by(id=id).first()
 
 
-def generate_token(user):
-    try:
-        # generate the auth token
-        auth_token = User.encode_auth_token(user.id)
-        response_object = {
-            'status': 'success',
-            'message': 'Successfully registered.',
-            'Authorization': auth_token.decode()
-        }
-        return response_object, 201
-    except Exception as e:
-        response_object = {
-            'status': 'fail',
-            'message': 'Some error occurred. Please try again.'
-        }
-        return response_object, 401
 
 
 def save_changes(data):

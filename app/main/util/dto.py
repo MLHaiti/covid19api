@@ -3,11 +3,12 @@ from flask_restx import Namespace, fields
 
 class PeopleDto:
     api = Namespace('people', description='People related operations')
-    people = api.model('covid19ht_people', {
+    people = api.model('people', {
         'phone': fields.String(required=True, description='People phone number'),
         'first_name': fields.String(required=True, description='Firstname'),
         'last_name': fields.String(required=True, description='Lastname'),
-        'gps': fields.String(description='GPS location')
+        'lat': fields.Float(description='GPS location'),
+        'lon': fields.Float(description='GPS location')
     })
 
 class UserDto:
