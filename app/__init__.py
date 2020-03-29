@@ -5,7 +5,7 @@ from .main.controller.user_controller import api as user_ns
 from .main.controller.auth_controller import api as auth_ns
 from .main.controller.people_controller import api as people_ns
 
-blueprint = Blueprint('api', __name__,url_prefix='/api',
+blueprint = Blueprint('api', __name__,#url_prefix='/api',
 static_url_path='static'
 )
 
@@ -14,9 +14,9 @@ static_url_path='static'
 )
 
 api = Api(blueprint,
-          title='FLASK RESTPLUS API BOILER-PLATE WITH JWT',
+          title='REST API for MLHAITI covid19',
           version='1.0',
-          description='a boilerplate for flask restplus web service',
+          description='A rest ',
           doc='/doc/'
           )
 
