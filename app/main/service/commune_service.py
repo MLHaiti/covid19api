@@ -1,7 +1,6 @@
 from app.main import db
 
 from sqlalchemy import text
-from dumper import dump
 from flask import jsonify
 
 
@@ -39,7 +38,5 @@ def get_all_communes_geojson():
     sql = text(myq)
     resultProxy = db.engine.execute(sql)
     result = resultProxy.fetchall()
-    dump(result)
-    print(result)
     resultProxy.close()
-    return [dict(row) for row in result]
+    return [dict(row) for row in result][0]
