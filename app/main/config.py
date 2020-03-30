@@ -30,7 +30,10 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     # uncomment the line below to use postgres
-    # SQLALCHEMY_DATABASE_URI = postgres_local_base
+    # SQLALCHEMY_DATABASE_URI = 'postgresql://' \
+    #                                     + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] \
+    #                                     +'@' + os.environ['RDS_HOSTNAME']  +  ':' + os.environ['RDS_PORT'] \
+    #                                     + '/' + os.environ['RDS_DB_NAME']
 
 
 config_by_name = dict(
