@@ -18,7 +18,7 @@ def save_new_person(data):
             comment=data["comment"],
             symptoms=data["symptoms"],
             dob=data["dob"],
-            geom='POINT('+str(data["lon"])+' '+str(data["lat"])+')'
+            geom='SRID=4326;POINT('+str(data["lon"])+' '+str(data["lat"])+')'
 
         )
         save_changes(new_person)
