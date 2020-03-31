@@ -7,6 +7,8 @@ class PeopleDto:
         'phone': fields.String(required=True, description='People phone number'),
         'first_name': fields.String(required=True, description='Firstname'),
         'last_name': fields.String(required=True, description='Lastname'),
+        'dob': fields.Date(required=False, description='Dob'),
+        'symptoms': fields.String(required=True, description='Symptoms'),
         'lat': fields.Float(description='GPS location'),
         'lon': fields.Float(description='GPS location')
     })
@@ -27,3 +29,6 @@ class AuthDto:
         'email': fields.String(required=True, description='The email address'),
         'password': fields.String(required=True, description='The user password '),
     })
+
+class CommunesDto:
+    api=Namespace('communes', description='Geojson for communes')
