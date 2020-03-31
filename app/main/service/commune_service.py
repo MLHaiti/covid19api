@@ -39,4 +39,4 @@ def get_all_communes_geojson():
     resultProxy = db.engine.execute(sql)
     result = resultProxy.fetchall()
     resultProxy.close()
-    return [dict(row) for row in result][0]
+    return [dict(row) for row in result][0]["geojson"]

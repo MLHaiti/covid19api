@@ -18,7 +18,7 @@ api = Api(blueprint,
           title='REST API for MLHAITI covid19',
           version='1.0',
           description='A rest ',
-          doc='/doc/'
+          doc='/api/doc/'
           )
 
 api.add_namespace(people_ns, path='/api/people')
