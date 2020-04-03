@@ -32,3 +32,34 @@ class AuthDto:
 
 class CommunesDto:
     api=Namespace('communes', description='Geojson for communes')
+
+class DepartementsDto:
+    api=Namespace('departements', description='Geojson for departements')
+
+class MSPPReportDepartementDto:
+    api=Namespace('mspp_report_departement', description='Report by departements')
+    mspp_report_departement = api.model('mspp_report_departement',{
+    'date':fields.Date(required=True,descripttion="Date of the report"),
+    'ref': fields.String(required=True),
+    'specimen':fields.Float(required=True),
+    'tested': fields.Float(required=True),
+    'positive':fields.Float(required=True),
+    'negative':fields.Float(required=True),
+    'comment': fields.String(required=False),
+    'departement_id': fields.Integer(required=True)
+    }
+    )
+
+class MSPPReportAgeDto:
+    api=Namespace('mspp_report_age', description='Report by age')
+    mspp_report_age = api.model('mspp_departement_report',{
+    'date':fields.Date(required=True,descripttion="Date of the report"),
+    'ref': fields.String(required=True),
+    'specimen':fields.Float(required=True),
+    'tested': fields.Float(required=True),
+    'positive':fields.Float(required=True),
+    'negative':fields.Float(required=True),
+    'comment': fields.String(required=False),
+    'age_range': fields.Integer(required=True)
+    }
+    )
