@@ -6,7 +6,7 @@ from flask_script import Manager
 
 from app import blueprint,static_blueprint
 from app.main import create_app, db
-from app.main.model import user, blacklist
+from app.main.model import user, blacklist,people,lookup_age_range,mspp_report_age,mspp_report_departement, ht_communes,ht_departments,spatial_ref_sys
 
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 

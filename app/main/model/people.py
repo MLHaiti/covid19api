@@ -17,6 +17,6 @@ class People(db.Model):
     lat = db.Column(db.Float, nullable=False)
     lon = db.Column(db.Float, nullable=False)
     dob = db.Column(db.Date, nullable=False)
-    symptoms = db.Column(db.String,nullable=False)
-    comment = db.Column(db.String,nullable=False)
+    symptoms = db.Column(db.String,nullable=True)
+    comment = db.Column(db.String,nullable=True)
     geom = db.Column(Geometry("POINT"))
