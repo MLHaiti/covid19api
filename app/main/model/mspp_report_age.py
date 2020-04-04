@@ -1,12 +1,11 @@
 from .. import db, flask_bcrypt
 import datetime
 from ..config import key
-from geoalchemy2 import Geometry
 
 
 class MSPPReportAge(db.Model):
     """ MSSP report Model by age"""
-    __tablename__ = "age_mspp_report"
+    __tablename__ = "mspp_report_age"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date =db.Column(db.Date, nullable=False)
