@@ -5,6 +5,7 @@ from .main.controller.user_controller import api as user_ns
 from .main.controller.auth_controller import api as auth_ns
 from .main.controller.people_controller import api as people_ns
 from .main.controller.communes_controller import api as communes_ns
+from .main.controller.departements_controller import api as departements_ns
 from .main.controller.mspp_report_age_controller import api as mspp_report_age_ns
 from .main.controller.mspp_report_departement_controller import api as mspp_report_departement_ns
 
@@ -26,6 +27,7 @@ api = Api(blueprint,
 api.add_namespace(people_ns, path='/api/people')
 api.add_namespace(user_ns, path='/api/user')
 api.add_namespace(communes_ns, path='/api/communes')
+api.add_namespace(departements_ns, path='/api/departements')
 api.add_namespace(mspp_report_age_ns, path='/api/mspp/report/age')
 api.add_namespace(mspp_report_departement_ns, path='/api/mspp/report/departement')
 api.add_namespace(auth_ns)
