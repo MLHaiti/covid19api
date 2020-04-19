@@ -41,10 +41,11 @@ class MSPPReportDepartementDto:
     mspp_report_departement = api.model('mspp_report_departement',{
     'date':fields.Date(required=True,descripttion="Date of the report"),
     'ref': fields.String(required=True),
-    'specimen':fields.Float(required=True),
+    'specimen':fields.Float(required=False),
     'tested': fields.Float(required=True),
     'positive':fields.Float(required=True),
-    'negative':fields.Float(required=True),
+    'negative':fields.Float(required=False),
+    'decease':fields.Float(required=True),
     'comment': fields.String(required=False),
     'departement_id': fields.Integer(required=True)
     }
@@ -55,10 +56,11 @@ class MSPPReportAgeDto:
     mspp_report_age = api.model('mspp_departement_report',{
     'date':fields.Date(required=True,descripttion="Date of the report"),
     'ref': fields.String(required=True),
-    'specimen':fields.Float(required=True),
+    'specimen':fields.Float(required=False),
     'tested': fields.Float(required=True),
     'positive':fields.Float(required=True),
-    'negative':fields.Float(required=True),
+    'negative':fields.Float(required=False),
+    'decease':fields.Float(required=True),
     'comment': fields.String(required=False),
     'age_range': fields.Integer(required=True)
     }
