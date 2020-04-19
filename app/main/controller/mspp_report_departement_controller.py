@@ -7,37 +7,37 @@ from ..service.user_service import save_new_user, get_all_users, get_a_user
 from ..service.mspp_report_departement_service import save_new_report_departement,get_a_report_departement, get_all_report_departement
 
 api = MSPPReportDepartementDto.api
-_mspp_age_report = MSPPReportDepartementDto.mspp_report_departement
+_mspp_dept_report = MSPPReportDepartementDto.mspp_report_departement
 
 
 @api.route('/')
-class MSPPReportAgeList(Resource):
-    @api.doc('list_mspp_report_age')
+class MSPPReportDeptList(Resource):
+    @api.doc('list_mspp_report_departement')
     # @admin_token_required
-    @api.marshal_list_with(_mspp_age_report, envelope='data')
+    @api.marshal_list_with(_mspp_dept_report, envelope='data')
     def get(self):
-        """List all People"""
+        """List all Departement Reports"""
         return get_all_report_departement()
 
-    @api.expect(_mspp_age_report, validate=True)
+    @api.expect(_mspp_dept_report, validate=True)
     @api.response(201, 'Person successfully created.')
-    @api.doc('create a new Person ')
+    @api.doc('create a new Report ')
     def post(self):
-        """Creates a new Person """
+        """Creates a new Report """
         data = request.json
         return save_new_report_departement(data=data)
 
 
 @api.route('/<id>')
-@api.param('id', 'The Person identifier')
-@api.response(404, 'Person not found.')
+@api.param('id', 'The Report identifier')
+@api.response(404, 'Report not found.')
 class People(Resource):
     @api.doc('get a person')
-    @api.marshal_with(_mspp_age_report)
+    @api.marshal_with(_mspp_dept_report)
     def get(self, id):
-        """get a user given its identifier"""
-        report_age = get_a_report_departement(id)
-        if not report_age:
+        """get a Report given its identifier"""
+        report_dept = get_a_report_departement(id)
+        if not report_dept:
             api.abort(404)
         else:
-            return report_age
+            return report_dept
