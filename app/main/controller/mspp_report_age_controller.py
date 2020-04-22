@@ -16,26 +16,26 @@ class MSPPReportAgeList(Resource):
     # @admin_token_required
     @api.marshal_list_with(_mspp_age_report, envelope='data')
     def get(self):
-        """List all People"""
+        """List all report by age"""
         return get_all_report_age()
 
     @api.expect(_mspp_age_report, validate=True)
-    @api.response(201, 'Person successfully created.')
-    @api.doc('create a new Person ')
+    @api.response(201, 'Age\'s report successfully created.')
+    @api.doc('create a new age report ')
     def post(self):
-        """Creates a new Person """
+        """Creates a new age report """
         data = request.json
         return save_new_report_age(data=data)
 
 
 @api.route('/<id>')
-@api.param('id', 'The Person identifier')
-@api.response(404, 'Person not found.')
+@api.param('id', 'The report identifier')
+@api.response(404, 'report not found.')
 class People(Resource):
-    @api.doc('get a person')
+    @api.doc('get an age report')
     @api.marshal_with(_mspp_age_report)
     def get(self, id):
-        """get a user given its identifier"""
+        """get an age report given its identifier"""
         report_age = get_a_report_age(id)
         if not report_age:
             api.abort(404)
