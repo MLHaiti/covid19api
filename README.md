@@ -4,7 +4,6 @@ virtualenv covid19api
 
 source covid19api/bin/activate
 
-
 ### Terminal commands
 
     Initial installation: make install
