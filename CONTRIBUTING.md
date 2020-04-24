@@ -12,6 +12,16 @@ This is pleasure for us to accept your contributions
 
 If you have an improvements to Covid19api , we are waiting for your pull request.
 
+### Technology that we use on this project
+- Python 3 , FLask , SQLAlchemy
+- PostgreSQL
+- Postgis
+
+
 ### How to start
 - Fork our [repository](https://github.com/MLHaiti/covid19api)
-- Install postgreSQL with postgis on your computer
+- Install postgreSQL with postgis and python3 on your computer
+-  `git clone https://github.com/MLHaiti/covid19api.git` on your computer
+-  `cd covid19api && pip install -r requirements.txt`
+
+Feel free to submit an issue if you have a problem while installing this software
