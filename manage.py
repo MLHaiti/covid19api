@@ -6,9 +6,10 @@ from flask_script import Manager
 
 from app import blueprint,static_blueprint
 from app.main import create_app, db
-from app.main.model import user, blacklist,people,lookup_age_range,mspp_report_age,mspp_report_departement, ht_communes,ht_departments,spatial_ref_sys
+from app.main.model import user, blacklist,people,lookup_age_range,mspp_report_age,mspp_report_departement, ht_communes,ht_departments
 
-app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+app = create_app(os.environ.get('MLHAITI_ENV') or 'dev')
+print(os.environ.get('MLHAITI_ENV') or 'dev' )
 
 app.register_blueprint(blueprint)
 app.register_blueprint(static_blueprint)

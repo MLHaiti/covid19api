@@ -8,7 +8,9 @@ from app import blueprint,static_blueprint
 from app.main import create_app, db
 from app.main.model import user, blacklist
 
-application = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+application = create_app(os.environ.get('MLHAITI_ENV') or 'dev')
+
+print(os.environ.get('MLHAITI_ENV') or 'dev' )
 
 application.register_blueprint(blueprint)
 application.register_blueprint(static_blueprint)

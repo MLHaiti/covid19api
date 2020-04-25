@@ -1,4 +1,3 @@
-
 from flask_testing import TestCase
 
 from app.main import db
