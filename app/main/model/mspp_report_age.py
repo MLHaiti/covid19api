@@ -14,6 +14,7 @@ class MSPPReportAge(db.Model):
     tested = db.Column(db.Float, nullable=False)
     positive = db.Column(db.Float, nullable=False)
     negative = db.Column(db.Float, nullable=False)
+    decease = db.Column(db.Float, nullable=False)
     comment = db.Column(db.String,nullable=False)
     age_range = db.Column(db.Integer, db.ForeignKey('lookup_age_range.id'),
         nullable=False)
